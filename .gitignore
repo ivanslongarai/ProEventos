@@ -7,6 +7,8 @@
 # Included by myself.
 .vscode
 ProEvents.db
+ProEvents.db-shm
+ProEvents.db-wal
 
 # User-specific files
 *.rsuser
