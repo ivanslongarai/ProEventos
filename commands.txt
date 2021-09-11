@@ -1,0 +1,11 @@
+npm install -g @angular/cli
+
+dotnet --version
+dotnet --list-sdks
+
+dotnet new globaljson --sdk-version 5.0.102 --force
+dotnet new
+dotnet new webapi -n ProEventos.API
+dotnet run
+
+dotnet watch run
