@@ -1,4 +1,4 @@
-npm install -g @angular/cli
+--- BACK END
 
 dotnet --version
 dotnet --list-sdks
@@ -7,6 +7,7 @@ dotnet new globaljson --sdk-version 5.0.102 --force
 dotnet new
 dotnet new webapi -n ProEvents.API
 dotnet run
+
 
 dotnet watch run
 
@@ -26,3 +27,18 @@ dotnet ef migrations add Initial -o Data/Migrations
 dotnet ef migrations remove (just if you need it)
 
 dotnet ef database update
+
+--- FRONT END
+
+ng new ProEvents-App
+Rotas = Sim
+SCSS
+
+ng generate component <name>
+ng g c <name>
+
+npm install --save @fortawesome/fontawesome-free
+npm install ngx-bootstrap --save
+npm install bootstrap@5
+
+ng add ngx-bootstrap

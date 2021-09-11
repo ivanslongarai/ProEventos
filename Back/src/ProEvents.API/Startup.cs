@@ -34,6 +34,7 @@ namespace ProEvents.API
                             .GetConnectionString("DefaultConnection")));
 
             services.AddControllers();
+            services.AddCors();
             services
                 .AddSwaggerGen(c =>
                 {
@@ -65,6 +66,10 @@ namespace ProEvents.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app
+                .UseCors(c =>
+                    c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
             app
                 .UseEndpoints(endpoints =>
