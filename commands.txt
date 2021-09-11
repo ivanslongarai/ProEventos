@@ -18,3 +18,11 @@ Entity Framework Core
 dotnet tool install --global dotnet-ef
 
 dotnet tool list --global
+
+dotnet ef migrations list (you should have none at this moment)
+
+dotnet ef migrations add Initial -o Data/Migrations
+
+dotnet ef migrations remove (just if you need it)
+
+dotnet ef database update

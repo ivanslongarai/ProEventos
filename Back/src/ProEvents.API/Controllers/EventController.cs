@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using ProEvents.API.Data;
 using ProEvents.API.Models;
 
 namespace ProEvents.API.Controllers
@@ -12,43 +11,23 @@ namespace ProEvents.API.Controllers
     [Route("api/[controller]")]
     public class EventController : ControllerBase
     {
-        public IEnumerable<Event>
-            _event =
-                new Event[] {
-                    new Event {
-                        Id = 1,
-                        Subject = "Angular 11 e .NET 5",
-                        Local = "Florianópolis - SC",
-                        Quantity = 10,
-                        EventDate = DateTime.Now.AddDays(2).ToString(),
-                        Lot = "1º Lote",
-                        ImageURL = "http://localhost:8080/img/img01.jpg"
-                    },
-                    new Event {
-                        Id = 2,
-                        Subject = "Entity Framework",
-                        Local = "Porto Alegre - RS",
-                        Quantity = 20,
-                        EventDate = DateTime.Now.AddDays(3).ToString(),
-                        Lot = "2º Lote",
-                        ImageURL = "http://localhost:8080/img/img02.jpg"
-                    }
-                };
+        private readonly DataContext _context;
 
-        public EventController()
+        public EventController(DataContext context)
         {
+            this._context = context;
         }
 
         [HttpGet]
         public IEnumerable<Event> Get()
         {
-            return _event;
+            return _context.Events;
         }
 
         [HttpGet("{id}")]
-        public IEnumerable<Event> GetById(int id)
+        public Event GetById(int id)
         {
-            return _event.Where(e => e.Id == id);
+            return _context.Events.FirstOrDefault(e => e.Id == id);
         }
 
         [HttpPost]
