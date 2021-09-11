@@ -11,3 +11,10 @@ dotnet run
 dotnet watch run
 
 SHIFT + ALT + F {format the code}
+
+ORM = Object Relacional Mapping
+Entity Framework Core
+
+dotnet tool install --global dotnet-ef
+
+dotnet tool list --global
