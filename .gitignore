@@ -6,9 +6,11 @@
 
 # Included by myself.
 .vscode
-ProEvents.db
-ProEvents.db-shm
-ProEvents.db-wal
+.DS_Store
+Thumbs.db
+*.db
+*.db-shm
+*.db-wal
 
 # User-specific files
 *.rsuser

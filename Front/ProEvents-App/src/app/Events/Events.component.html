@@ -1,7 +1,98 @@
-<p>Events works!</p>
+<h2>Events</h2>
 
-<div *ngFor="let event of events">
-  <hr />
-  <p>{{ event.subject }}</p>
-  <p>{{ event.local }}</p>
+<hr />
+
+<div class="form-inline">
+  <div class="form-group mb-2">
+    <div class="container">
+      <input
+        type="text"
+        class="form-control mr-2"
+        placeholder="Type something to filter the events"
+        [(ngModel)]="listFilter"
+      />
+    </div>
+  </div>
 </div>
+<h5 style="margin-left: 12px">Filtered by: {{ listFilter }}</h5>
+<hr />
+
+<table class="table table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>
+        <button
+          class="btn btn-outline-light btn-sm"
+          (click)="setImageVisibility()"
+        >
+          <i
+            class="{{ getImageVisibility() ? 'fa fa-eye-slash' : 'fa fa-eye' }}"
+          >
+            {{
+              getImageVisibility() ? " Ocultar imagens" : " Mostrar imagens"
+            }}</i
+          >
+        </button>
+      </th>
+      <th>#</th>
+      <th>Subject</th>
+      <th>Local</th>
+      <th>Date</th>
+      <th>Quantity</th>
+      <th>Lot</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="events && events.length">
+    <tr *ngFor="let event of filteredEvents">
+      <td>
+        <img
+          [collapse]="!getImageVisibility()"
+          [isAnimated]="true"
+          src="/assets/{{ event.imageURL }}"
+          alt="imageURL"
+          [style.width.px]="imageWidth"
+          [style.margin.px]="imageMargin"
+        />
+      </td>
+      <td>{{ event.id }}</td>
+      <td>{{ event.subject }}</td>
+      <td>{{ event.local }}</td>
+      <td>{{ event.eventDate }}</td>
+      <td>{{ event.quantity }}</td>
+      <td>{{ event.lot }}</td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm" style="margin-right: 2px;">
+          Edit
+        </button>
+        <button type="button" class="btn btn-danger btn-sm">
+          Del
+        </button>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot *ngIf="!events.length">
+    <tr>
+      <td colspan="8" class="text-center">
+        <h4>There are no events to list...</h4>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+<!-- {{events | json}} -->
+
+<!--
+
+  Diretivas estruturais, exemplos:
+  *ngIf
+  *ngFor
+  *ngShow
+
+  Bindings e Interpolações, exemplo:
+  {{events[0].imageURL}}
+  {{events | json}}
+
+  Java Script Object Notation
+
+-->
