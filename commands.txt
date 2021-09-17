@@ -8,7 +8,6 @@ dotnet new
 dotnet new webapi -n ProEvents.API
 dotnet run
 
-
 dotnet watch run
 
 SHIFT + ALT + F {format the code}
@@ -17,15 +16,10 @@ ORM = Object Relacional Mapping
 Entity Framework Core
 
 dotnet tool install --global dotnet-ef
-
 dotnet tool list --global
-
 dotnet ef migrations list (you should have none at this moment)
-
 dotnet ef migrations add Initial -o Data/Migrations
-
 dotnet ef migrations remove (just if you need it)
-
 dotnet ef database update
 
 --- FRONT END
@@ -42,3 +36,25 @@ npm install ngx-bootstrap --save
 npm install bootstrap@5
 
 ng add ngx-bootstrap
+
+--- NEW LAYERS
+
+dotnet new sln -n ProEvents
+dotnet new classlib -n ProEvents.Persistence
+dotnet new classlib -n ProEvents.Domain
+dotnet new classlib -n ProEvents.Application
+
+dotnet sln ProEvents.sln add ProEvents.Persistence
+dotnet sln ProEvents.sln add ProEvents.Domain
+dotnet sln ProEvents.sln add ProEvents.Application
+dotnet sln ProEvents.sln add ProEvents.API
+
+dotnet add ProEvents.API/ProEvents.API.csproj reference ProEvents.Application
+dotnet add ProEvents.API/ProEvents.API.csproj reference ProEvents.Persistence
+dotnet add ProEvents.Application/ProEvents.Application.csproj reference ProEvents.Domain
+dotnet add ProEvents.Application/ProEvents.Application.csproj reference ProEvents.Persistence
+dotnet add ProEvents.Persistence/ProEvents.Persistence.csproj reference ProEvents.Domain
+
+dotnet ef migrations add Initial -p ProEvents.Persistence -s ProEvents.API
+dotnet restore
+dotnet ef database update -s ProEvents.API

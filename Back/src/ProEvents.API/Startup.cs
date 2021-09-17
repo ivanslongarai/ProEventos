@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using ProEvents.API.Data;
+using ProEvents.Persistence;
 
 namespace ProEvents.API
 {
@@ -28,7 +28,7 @@ namespace ProEvents.API
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddDbContext<DataContext>(context =>
+                .AddDbContext<ProEventsContext>(context =>
                     context
                         .UseSqlite(Configuration
                             .GetConnectionString("DefaultConnection")));

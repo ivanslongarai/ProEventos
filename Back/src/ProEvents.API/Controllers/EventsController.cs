@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using ProEvents.API.Data;
-using ProEvents.API.Models;
+using ProEvents.Domain;
+using ProEvents.Persistence;
 
 namespace ProEvents.API.Controllers
 {
@@ -11,9 +11,9 @@ namespace ProEvents.API.Controllers
     [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly ProEventsContext _context;
 
-        public EventsController(DataContext context)
+        public EventsController(ProEventsContext context)
         {
             this._context = context;
         }
